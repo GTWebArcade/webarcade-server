@@ -2,6 +2,7 @@
 
 ## Requirements
 
+- [git](https://git-scm.com/)
 - [NodeJS](https://nodejs.org/en/download/)
 
 ## Get Started
@@ -9,6 +10,8 @@
 Install dependencies and run web app
 
 ```shell
+git clone https://github.com/GTWebArcade/webarcade-server.git
+cd webarcade-server
 npm i
 npm run dev
 ```

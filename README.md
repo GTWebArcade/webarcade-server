@@ -12,3 +12,9 @@ Install dependencies and run web app
 npm i
 npm run dev
 ```
+
+## Style Check Code
+
+```shell
+npm run lint
+```

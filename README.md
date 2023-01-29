@@ -18,3 +18,9 @@ npm run dev
 ```shell
 npm run lint
 ```
+
+# URLs
+
+- The development server is available at [http://localhost:8080](http://localhost:8080)
+
+- The production server is available at [https://webarcade-server.herokuapp.com](https://webarcade-server.herokuapp.com)

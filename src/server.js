@@ -28,6 +28,7 @@ env.config();
   s3.upload(params, (err, data) => {
     if (err) {
       console.error('Error uploading file', err);
+      return;
     }
     console.log(`Uploaded file to ${process.env.AWS_CLOUDFRONT_URL}/${awsFileSavePath}`);
   });

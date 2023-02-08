@@ -11,19 +11,25 @@ env.config();
 
 // example of how to upload a file to s3
 {
+  // import AWS
   const AWS = require('aws-sdk');
+  // create connection to our S3 storage bucket
   const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_BUCKET_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_BUCKET_SECRET,
   });
+  // specify which file to upload to storage bucket and store the
+  // data of that file in the fileContent variable
   const filename = 'README.md';
   const fileContent = fs.readFileSync(filename);
+  // specify which path to upload our file to in the AWS S3 cloud storage bucket
   const awsFileSavePath = `web-arcade/${filename}`;
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: awsFileSavePath,
     Body: fileContent,
   };
+  /// upload the file to the storage bucket and check whether or not there was an error
   // eslint-disable-next-line no-unused-vars
   s3.upload(params, (err, data) => {
     if (err) {

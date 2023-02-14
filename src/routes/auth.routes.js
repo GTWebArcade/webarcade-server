@@ -9,11 +9,11 @@ module.exports = function addAuthRoutes(app) {
     next();
   });
 
-  app.post(
-    '/api/v1/auth/sign-in',
-    [],
-    controller.signin,
-  );
+  // app.post(
+  //   '/api/auth/signup',
+  //   [],
+  //   controller.signin,
+  // );
 
   app.post('/api/auth/signin', controller.signin);
 };

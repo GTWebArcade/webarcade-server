@@ -6,6 +6,16 @@ const env = require('dotenv');
 // load additional environment variables (ex: database and storage bucket passwords) from .env file
 env.config();
 
+// Driver Code
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://admin:webarcade7@cluster0.rporgjs.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
 // create express app and configure it
 const app = express();
 app.use(cors({ origin: '*' }));

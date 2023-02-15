@@ -10,5 +10,5 @@ module.exports = function addUserRoutes(app) {
     next();
   });
 
-  app.get('/api/test/user', [authJwt.verifyToken], controller.userBoard);
+  app.get('/api/user/check', [authJwt.verifyToken], controller.userBoard);
 };

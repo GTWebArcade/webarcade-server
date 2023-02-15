@@ -5,16 +5,25 @@ const express = require('express');
 const cors = require('cors');
 const env = require('dotenv');
 const fs = require('fs');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 // load additional environment variables (ex: database and storage bucket passwords) from .env file
 env.config();
 
 // MongoDB database connection code
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.MONGO_DB_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
+const client = new MongoClient(
+  uri,
+  { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 },
+);
+client.connect((err) => {
+  if (err) {
+    console.error('Error connection to MongoDB', err);
+  } else {
+    console.log('Connected to MongoDB');
+  }
+  // eslint-disable-next-line no-unused-vars
+  const collection = client.db('test').collection('devices');
   // perform actions on the collection object
   client.close();
 });

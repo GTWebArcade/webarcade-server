@@ -8,7 +8,7 @@ env.config();
 
 // Driver Code
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://admin:webarcade7@cluster0.rporgjs.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGO_DB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
   const collection = client.db("test").collection("devices");

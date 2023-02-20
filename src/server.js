@@ -10,7 +10,7 @@ env.config();
 // example of how to upload a file to s3
 {
   // import AWS
-  // eslint-disable-next-line import/no-unresolved
+  // eslint-disable-next-line import/no-unresolved, global-require
   const AWS = require('aws-sdk');
   // create connection to our S3 storage bucket
   const s3 = new AWS.S3({

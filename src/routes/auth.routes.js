@@ -9,6 +9,5 @@ module.exports = function addAuthRoutes(app) {
     next();
   });
 
-  
   app.post('/api/v1/auth/sign-up', controller.signup);
 };

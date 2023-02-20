@@ -70,38 +70,6 @@ app.get('/', (req, res) => {
   res.json({ message: 'WebArcade server.' });
 });
 
-// dummy database
-const db = {
-  lookUpUserByUsername: (username) => {
-    if (username === 'deepak') {
-      const userData = {
-        username: 'deepak',
-        password: 'password',
-      };
-      return userData;
-    }
-    return undefined;
-  },
-};
-
-const hashPassword = (password) => password;
-
-// dummy sign-in endpoint
-app.post('/api/v1/sign-in', (req, res) => {
-  const username = req?.body?.username; 
-  const password = req?.body?.password; 
-  const userData = db.lookUpUserByUsername(username);
-  if (userData) {
-      if (userData.password === hashPassword(password)) {
-        res.json({ message: 'Success', accessToken: 'asdfasdfsadfdsfa' });
-      } else {
-        res.json({ message: 'Error loggin in. Invalid password.' });
-      }
-      return;
-  } 
-  res.json({ message: 'Error loggin in. User does not exist with this username.'});
-});
-
 // routes
 require('./routes/auth.routes')(app);
 

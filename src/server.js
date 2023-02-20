@@ -59,6 +59,22 @@ client.connect((err) => {
   });
 }
 
+// db creation and connection
+const db = require("./models");
+
+db.mongoose
+  .connect(process.env.MONGO_DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Successfully connect to MongoDB.");
+  })
+  .catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+  });
+
 // create express app and configure it
 const app = express();
 app.use(cors({ origin: '*' }));

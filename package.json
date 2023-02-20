@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/GTWebArcade/webarcade-server#readme",
   "dependencies": {
+    "aws-sdk": "^2.1310.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

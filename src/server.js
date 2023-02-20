@@ -60,7 +60,7 @@ client.connect((err) => {
 }
 
 // db creation and connection
-const db = require("./models");
+const db = require('./models');
 
 db.mongoose
   .connect(process.env.MONGO_DB_URI, {
@@ -68,10 +68,10 @@ db.mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Successfully connect to MongoDB.");
+    console.log('Successfully connect to MongoDB.');
   })
-  .catch(err => {
-    console.error("Connection error", err);
+  .catch((err) => {
+    console.error('Connection error', err);
     process.exit();
   });
 

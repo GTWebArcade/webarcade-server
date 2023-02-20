@@ -15,5 +15,5 @@ module.exports = function addAuthRoutes(app) {
     controller.signin,
   );
 
-  app.post('/api/auth/signin', controller.signin);
+  app.post('/api/v1/auth/sign-up', controller.signup);
 };

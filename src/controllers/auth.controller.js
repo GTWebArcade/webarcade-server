@@ -1,10 +1,7 @@
-// const config = require("../config/auth.config");
+const bcrypt = require('bcryptjs');
 const db = require('../models');
 
 const User = db.user;
-
-// var jwt = require("jsonwebtoken");
-const bcrypt = require('bcryptjs');
 
 exports.signup = (req, res) => {
   const user = new User({
@@ -13,7 +10,7 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8),
   });
 
-  user.save((err, user) => {
+  user.save((err) => {
     if (err) {
       console.error(err);
       res.status(500).send({ message: err });

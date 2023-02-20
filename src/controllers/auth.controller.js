@@ -14,6 +14,7 @@ exports.signup = (req, res) => {
 
   user.save((err, user) => {
     if (err) {
+      console.error(err);
       res.status(500).send({ message: err });
       return;
     }

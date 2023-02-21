@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const config = require('../config/auth.config');
 const db = require('../models');
 
@@ -18,12 +18,12 @@ exports.signin = async (req, res) => {
       res.status(404).send({ message: 'Username not included.' });
     }
 
-    // const validPass = bcrypt.compareSync(
-    //   req?.body?.password,
-    //   user?.password,
-    // );
+    const validPass = bcrypt.compareSync(
+      req?.body?.password,
+      user?.password,
+    );
 
-    const validPass = req?.body?.password === user?.password;
+    // const validPass = req?.body?.password === user?.password;
 
     if (!validPass) {
       res.status(401).send({
@@ -44,5 +44,22 @@ exports.signin = async (req, res) => {
       accessToken: token,
       message: 'Successfully logged in.',
     });
+  });
+};
+
+exports.signup = (req, res) => {
+  const user = new User({
+    username: req.body.username,
+    // email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8),
+  });
+
+  user.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send({ message: err });
+      return;
+    }
+    res.send({ message: 'User was registered successfully!' });
   });
 };

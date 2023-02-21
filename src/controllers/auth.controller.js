@@ -16,6 +16,7 @@ exports.signin = async (req, res) => {
 
     if (!user) {
       res.status(404).send({ message: 'Username not included.' });
+      return;
     }
 
     const validPass = bcrypt.compareSync(
@@ -30,17 +31,18 @@ exports.signin = async (req, res) => {
         accessToken: null,
         message: 'Incorrect Password!',
       });
+      return;
     }
 
-    const token = jwt.sign({ id: user.id }, config.secret, {
+    const token = jwt.sign({ id: user?.id }, config?.secret, {
       expiresIn: 86400,
     });
 
     res.status(200).send({
       // eslint-disable-next-line no-underscore-dangle
-      id: user._id,
-      username: user.username,
-      email: user.email,
+      id: user?._id,
+      username: user?.username,
+      email: user?.email,
       accessToken: token,
       message: 'Successfully logged in.',
     });

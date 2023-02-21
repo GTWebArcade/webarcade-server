@@ -9,11 +9,8 @@ module.exports = function addAuthRoutes(app) {
     next();
   });
 
-  app.post(
-    '/api/v1/auth/sign-in',
-    [],
-    controller.signin,
-  );
-
+  // TODO: remove this first signin endpoint route (ensure the change is made on the frontend too)
   app.post('/api/auth/signin', controller.signin);
+  app.post('/api/v1/auth/sign-in', controller.signin);
+  app.post('/api/v1/auth/sign-up', controller.signup);
 };

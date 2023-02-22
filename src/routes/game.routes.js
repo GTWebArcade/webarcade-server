@@ -1,7 +1,6 @@
-const controller = require('../controllers/auth.controller');
 const gameController = require('../controllers/game.controller');
 
-module.exports = function addAuthRoutes(app) {
+module.exports = function addGameRoutes(app) {
   app.use((req, res, next) => {
     res.header(
       'Access-Control-Allow-Headers',
@@ -10,7 +9,5 @@ module.exports = function addAuthRoutes(app) {
     next();
   });
 
-  app.post('/api/v1/auth/sign-in', controller.signin);
-  app.post('/api/v1/auth/sign-up', controller.signup);
   app.get('/api/v1/games', gameController.getGames);
 };

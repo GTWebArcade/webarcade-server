@@ -1,5 +1,6 @@
 const controller = require('../controllers/auth.controller');
 const gameController = require('../controllers/game.controller');
+const { verifySignUp } = require('../middlewares');
 
 module.exports = function addAuthRoutes(app) {
   app.use((req, res, next) => {
@@ -11,6 +12,6 @@ module.exports = function addAuthRoutes(app) {
   });
 
   app.post('/api/v1/auth/sign-in', controller.signin);
-  app.post('/api/v1/auth/sign-up', controller.signup);
+  app.post('/api/v1/auth/sign-up', verifySignUp.checkDuplicateUsernameOrEmail, controller.signup);
   app.get('/api/v1/games', gameController.getGames);
 };

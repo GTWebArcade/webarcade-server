@@ -66,8 +66,17 @@ app.get('/', (req, res) => {
   res.json({ message: 'WebArcade server.' });
 });
 
+// app.post('/api/auth/signin', (req, res) => {
+//   const username = req?.body?.username;
+//   const password = req?.body?.password;
+//   console.log('username: ', username);
+//   console.log('password: ', password);
+//   res.json({ message: 'Error logging in.' });
+// });
+
 // routes
 require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 // listen for requests
 const PORT = process.env.PORT || 8080;

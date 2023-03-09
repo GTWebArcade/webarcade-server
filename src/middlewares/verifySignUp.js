@@ -3,6 +3,31 @@ const db = require('../models');
 const User = db.user;
 
 const checkDuplicateUsernameOrEmail = (req, res, next) => {
+  if (!req?.body?.username) {
+    res.status(400).send({ message: 'Username is empty!' });
+    return;
+  }
+
+  if (!req?.body?.email) {
+    res.status(400).send({ message: 'Email is empty!' });
+    return;
+  }
+
+  if (!req?.body?.password) {
+    res.status(400).send({ message: 'Password is empty!' });
+    return;
+  }
+
+  if (!req?.body?.cpassword) {
+    res.status(400).send({ message: 'Confirm Password is empty!' });
+    return;
+  }
+
+  if (req?.body?.password !== req?.body?.cpassword) {
+    res.status(400).send({ message: 'Passwords do not match!' });
+    return;
+  }
+
   User.findOne({
     username: req?.body?.username,
   }).exec((err, user) => {

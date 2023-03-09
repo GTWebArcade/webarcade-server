@@ -4,8 +4,12 @@ const Game = mongoose.model(
   'Game',
   new mongoose.Schema({
     name: String,
-    gameUrl: String,
+    gameDataUrls: Array,
     imageUrl: String,
+    gameType: String,
+    uploaderUserId: String,
+    createdAt: String,
+    updatedAt: String,
   }),
 );
 

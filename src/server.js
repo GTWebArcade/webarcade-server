@@ -76,6 +76,7 @@ app.get('/', (req, res) => {
 
 // routes
 require('./routes/auth.routes')(app);
+require('./routes/game.routes')(app);
 require('./routes/user.routes')(app);
 
 // listen for requests

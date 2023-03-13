@@ -11,5 +11,5 @@ module.exports = function addGameRoutes(app) {
 
   // app.get('/api/v1/games', gameController.getGames);
 
-  app.get('/api/v1/game', gameController.getGame);
+  app.get('/api/v1/game/:id', gameController.getGame);
 };

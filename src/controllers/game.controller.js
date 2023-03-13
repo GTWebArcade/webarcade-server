@@ -15,7 +15,7 @@ exports.getGames = async (req, res) => {
 };
 
 exports.getGame = async (req, res) => {
-  // res.status(200).send('hello');
+// res.status(200).send('hello');
 //   console.log('yo');
 //   console.log(req.params);
   try {

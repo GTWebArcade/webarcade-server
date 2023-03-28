@@ -4,14 +4,20 @@ const db = require('../models');
 const Game = db.game;
 
 exports.getGames = async (req, res) => {
-  Game.find({}).exec((err, games) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
+  const nameQeuryParam = req?.query?.name;
+  if (nameQeuryParam) {
+    // mongoDB code
+    res.status(200).send({ games: [] });
+  } else {
+    Game.find({}).exec((err, games) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
 
-    res.status(200).send({ games });
-  });
+      res.status(200).send({ games });
+    });
+  }
 };
 
 exports.getGame = async (req, res) => {

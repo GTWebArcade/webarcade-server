@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const config = require('../config/auth.config');
 const db = require('../models');
 
@@ -51,9 +51,9 @@ exports.signin = async (req, res) => {
 
 exports.signup = (req, res) => {
   const user = new User({
-    username: req.body.username,
-    // email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
+    username: req?.body?.username,
+    email: req?.body?.email,
+    password: bcrypt.hashSync(req?.body?.password, 8),
   });
 
   user.save((err) => {

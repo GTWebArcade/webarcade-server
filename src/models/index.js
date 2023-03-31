@@ -8,5 +8,6 @@ db.mongoose = mongoose;
 
 db.user = require('./user.model');
 db.game = require('./game.model');
+db.rating = require('./rating.model');
 
 module.exports = db;

@@ -5,9 +5,26 @@ const Game = db.game;
 
 exports.getGames = async (req, res) => {
   const nameQeuryParam = req?.query?.name;
+  // const typeQeuryParam = req?.query?.type;
   if (nameQeuryParam) {
     // mongoDB code
-    res.status(200).send({ games: [] });
+    Game.find({ name: nameQeuryParam }).exec((err, games) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+
+      res.status(200).send({ games });
+    });
+  // } else if (typeQeuryParam) {
+  //   Game.find({ type: typeQeuryParam }).exec((err, games) => {
+  //     if (err) {
+  //       res.status(500).send({ message: err });
+  //       return;
+  //     }
+
+  //     res.status(200).send({ games });
+  //   });
   } else {
     Game.find({}).exec((err, games) => {
       if (err) {

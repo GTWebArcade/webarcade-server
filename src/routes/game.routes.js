@@ -9,7 +9,7 @@ module.exports = function addGameRoutes(app) {
     next();
   });
 
-  // app.get('/api/v1/games', gameController.getGames);
-
+  app.get('/api/v1/games', gameController.getGames);
   app.get('/api/v1/game/:id', gameController.getGame);
+  app.post('/api/v1/game/create-game', gameController.createGame);
 };

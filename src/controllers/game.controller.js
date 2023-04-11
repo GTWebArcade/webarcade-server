@@ -14,10 +14,32 @@ exports.getGames = async (req, res) => {
   });
 };
 
+exports.createGame = async (req, res) => {
+  const game = new Game({
+    name: req?.body?.name,
+    description: req?.body?.description,
+    gameType: req?.body?.gameType,
+    dataUrl: req?.body?.dataUrl,
+    loaderUrl: req?.body?.loaderUrl,
+    frameworkUrl: req?.body?.frameworkUrl,
+    codeUrl: req?.body?.codeUrl,
+    imageUrl: req?.body?.imageUrl,
+    uploaderUserId: req?.body?.uploaderUserId,
+    createdAt: req?.body?.createdAt,
+    updatedAt: req?.body?.updatedAt,
+  });
+
+  game.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send({ message: err });
+      return;
+    }
+    res.send({ message: 'Game was added successfully!' });
+  });
+};
+
 exports.getGame = async (req, res) => {
-// res.status(200).send('hello');
-//   console.log('yo');
-//   console.log(req.params);
   try {
     const game = await Game.findById(req.params.id);
     if (!game) {

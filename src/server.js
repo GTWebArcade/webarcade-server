@@ -1,11 +1,14 @@
-// imports
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-vars */
+
 const express = require('express');
 const cors = require('cors');
 const env = require('dotenv');
 const fs = require('fs');
-const multer  = require('multer')
-const storage = multer.memoryStorage()
-const upload = multer({storage: storage})
+const multer = require('multer');
+
+const memStorage = multer.memoryStorage();
+const upload = multer({ storage: memStorage });
 
 // load additional environment variables (ex: database and storage bucket passwords) from .env file
 env.config();
@@ -47,9 +50,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'WebArcade server.' });
 });
 
-//dummy Up-Load game endpoint
-app.post('/api/v1/file-upload', upload.single("gamedata"), (req, res) => {
-  if (req?.file &&  req?.file?.buffer && req?.file?.originalname) {
+app.post('/api/v1/file-upload', upload.single('gamedata'), (req, res) => {
+  if (req?.file && req?.file?.buffer && req?.file?.originalname) {
     // specify which path to upload our file to in the AWS S3 cloud storage bucket
     const fileName = Date.now().toString() + req.file.originalname;
     console.log(fileName);
@@ -61,25 +63,16 @@ app.post('/api/v1/file-upload', upload.single("gamedata"), (req, res) => {
     };
     s3.upload(params, (err, data) => {
       if (err) {
-        console.error('Error uploading file', err);
-        res.json({ message: 'Error' }); 
+        res.status(500).send({ message: err });
         return;
       }
-      console.log(`Uploadgied file to ${process.env.AWS_CLOUDFRONT_URL}/${awsFileSavePath}`);
-      res.json({ FileURL: `${process.env.AWS_CLOUDFRONT_URL}/${awsFileSavePath}` }); 
+      console.log(`Uploaded file to ${process.env.AWS_CLOUDFRONT_URL}/${awsFileSavePath}`);
+      res.json({ FileURL: `${process.env.AWS_CLOUDFRONT_URL}/${awsFileSavePath}` });
     });
   } else {
-    res.json({ message: 'No file provided' });
+    res.status(404).send({ message: 'No file provided.' });
   }
 });
-
-// app.post('/api/auth/signin', (req, res) => {
-//   const username = req?.body?.username;
-//   const password = req?.body?.password;
-//   console.log('username: ', username);
-//   console.log('password: ', password);
-//   res.json({ message: 'Error logging in.' });
-// });
 
 // routes
 require('./routes/auth.routes')(app);

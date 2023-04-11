@@ -5,10 +5,10 @@ const Rating = mongoose.model(
   new mongoose.Schema({
     user: String,
     gameId: String,
-    ratingScore: String,
+    ratingScore: Number,
     ratingMessage: String,
-    createdAt: String,
-    updatedAt: String,
+    createdAt: Number,
+    updatedAt: Number,
   }),
 );
 

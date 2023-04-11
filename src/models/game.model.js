@@ -12,8 +12,8 @@ const Game = mongoose.model(
     codeUrl: String,
     imageUrl: String,
     uploaderUserId: String,
-    createdAt: String,
-    updatedAt: String,
+    createdAt: Number,
+    updatedAt: Number,
   }),
 );
 

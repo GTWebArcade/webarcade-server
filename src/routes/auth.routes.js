@@ -13,5 +13,4 @@ module.exports = function addAuthRoutes(app) {
 
   app.post('/api/v1/auth/sign-in', controller.signin);
   app.post('/api/v1/auth/sign-up', verifySignUp.checkDuplicateUsernameOrEmail, controller.signup);
-  app.get('/api/v1/games', gameController.getGames);
 };

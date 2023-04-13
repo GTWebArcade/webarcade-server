@@ -42,7 +42,7 @@ exports.createGame = async (req, res) => {
     frameworkUrl: req?.body?.frameworkUrl,
     codeUrl: req?.body?.codeUrl,
     imageUrl: req?.body?.imageUrl,
-    uploaderUserId: req?.body?.uploaderUserId,
+    uploaderUserId: req?.userId,
     createdAt: req?.body?.createdAt,
     updatedAt: req?.body?.updatedAt,
   });

@@ -1,5 +1,4 @@
 const controller = require('../controllers/auth.controller');
-const gameController = require('../controllers/game.controller');
 const { verifySignUp } = require('../middlewares');
 
 module.exports = function addAuthRoutes(app) {

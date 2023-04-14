@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 
-const Game = mongoose.model(
-  'Game',
-  new mongoose.Schema({
-    name: String,
-    description: String,
-    gameType: String,
-    dataUrl: String,
-    loaderUrl: String,
-    frameworkUrl: String,
-    codeUrl: String,
-    imageUrl: String,
-    uploaderUserId: String,
-    createdAt: Number,
-    updatedAt: Number,
-  }),
-);
+const schema = new mongoose.Schema({
+  name: String,
+  description: String,
+  gameType: String,
+  unityDataUrl: String,
+  unityLoaderUrl: String,
+  unityFrameworkUrl: String,
+  unityCodeUrl: String,
+  imageUrl: String,
+  uploaderUserId: String,
+  createdAt: Number,
+  updatedAt: Number,
+});
+schema.index({ name: 'text' });
+
+const Game = mongoose.model('Game', schema);
 
 module.exports = Game;

@@ -10,8 +10,8 @@ const schema = new mongoose.Schema({
   unityCodeUrl: String,
   imageUrl: String,
   uploaderUserId: String,
-  createdAt: Number,
-  updatedAt: Number,
+  createdAt: String,
+  updatedAt: String,
 });
 schema.index({ name: 'text' });
 

@@ -7,8 +7,8 @@ const Rating = mongoose.model(
     gameId: String,
     ratingScore: Number,
     ratingMessage: String,
-    createdAt: Number,
-    updatedAt: Number,
+    createdAt: String,
+    updatedAt: String,
   }),
 );
 

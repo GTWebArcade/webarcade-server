@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 const ratingController = require('../controllers/rating.controller');
+const authJwt = require('../middlewares/authJwt');
 
 module.exports = function addRatingRoutes(app) {
   app.use((req, res, next) => {
@@ -9,6 +11,6 @@ module.exports = function addRatingRoutes(app) {
     next();
   });
 
-  app.get('/api/v1/rating/get-rating', ratingController.getRatings);
-  app.get('/api/v1/rating/post-rating', ratingController.sendRating);
+  app.get('/api/v1/rating/get-ratings/:gameId', ratingController.getRatings);
+  app.post('/api/v1/rating/post-rating', ratingController.sendRating);
 };

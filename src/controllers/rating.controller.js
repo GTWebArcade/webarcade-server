@@ -24,7 +24,7 @@ exports.sendRating = (req, res) => {
 
 exports.getRatings = async (req, res) => {
   Rating.find({
-    gameId: req?.body?.id,
+    gameId: req.params.gameId,
   }).exec((err, ratings) => {
     if (err) {
       res.status(500).send({ message: err });
